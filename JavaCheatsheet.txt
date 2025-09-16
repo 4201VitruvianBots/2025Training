@@ -1,0 +1,195 @@
+// Importing the Scanner library. This will be useful for later
+import java.util.Scanner;
+
+// This is a single-line comment
+
+/* This is a multi-line
+   or in-line comment */
+
+// This is the main class and function that all parts of your code will lead to.
+public class Main {
+	public static void main(String[] args) {
+		/* Printing 
+		*/
+		System.out.println("Hello world!"); // This is how to print stuff
+		
+		System.out.print("Hello world!\n"); // This does the same thing as above
+		System.out.print("Hello world!"); // This does the same thing as above, except not adding a new line
+		
+		/* Variables
+		*/
+		int myInt = 5; // This is how you define an int (integer)
+		double myDouble = 3.141; // This is how you define a double (high-precision decimal number)
+		float myFloat = 3.14; // This is how you define a float (low-precision decimal number)
+		
+		boolean myBool = true; // This is how you define a boolean (true/false value)
+		String myString = "banana"; // This is how you define a string (piece of text)
+		
+		// You can use these variables in any part of your code, including print statements
+		System.out.println(myInt); // => 5
+		System.out.println(myDouble); // => 3.141
+		System.out.println(myFloat); // => 3.14
+		System.out.println(myBool); // => true
+		System.out.println(myString); // => banana
+		
+		// You can declare a variable before assigning it
+		int myOtherInt; // This will have a default value of "null"
+		
+		// Trying to access an undefined variable will give a NullPointerException error
+		// System.out.println(myOtherInt); // => NullPointerException: myOtherInt is null
+		
+		myOtherInt = 7; // myOtherInt is now defined
+		
+		System.out.println(myOtherInt); // => 7
+		
+		/* Operations
+		*/
+		System.out.println(2 + 2); // => 4
+		System.out.println(3 - 1); // => 2
+		System.out.println(5 * 10); // => 50
+		System.out.println(9 / 2); // => 4.5
+		System.out.println(Math.pow(2, 3)); // => 8
+		
+		System.out.println(2 ^ 3); // This is INCORRECT and will not give the result you expect
+		
+		// You can also use the + operator to combine strings with strings or numbers
+		System.out.println("Bana" + "na"); // => Banana
+		System.out.println("I have " + 5 + " bananas"); // I have 5 bananas
+		
+		/* User Input
+		*/
+		Scanner myScanner = new Scanner(System.in); // Make a new scanner (Gets user input)
+		
+		int userInt = myScanner.nextInt(); // Get a number from the scanner 
+		
+		String userString = myScanner.next(); // Get text from the scanner
+		
+		System.out.println(userInt); // Print the number
+		System.out.println(userString); // Print the string
+		
+		myScanner.close(); // Close the scanner
+		
+		/* Conditionals
+		*/
+		// Comparisons are operators which return booleans
+		// > (greater than)
+		// >= (greater than or equal to)
+		// == equal to
+		// != not equal to
+		System.out.println(3 > 3); // => false
+		System.out.println(3 >= 3); // => true
+		System.out.println(3 == 4); // => false
+		System.out.println(3 != 4); // => true
+		System.out.println(2 + 3 < 4); // => false
+		System.out.println("hi" == "hi"); // => true
+		
+		// Logical operators are operators which turn two booleans into one.
+		// || (or)
+		// && (and)
+		// ! (not)
+		System.out.println(true || false); // => true
+		System.out.println(true && false); // => false
+		System.out.println(!false); // => true
+		
+		// If statements
+		// We use if statements to only run a piece of code if a boolean is true.
+		int a = 2;
+		int b = 4;
+		if (a + a == b) {
+			System.out.println("2 + 2 = 4");
+		}
+		
+		// Logical Operators Inside Conditionals
+		// Allows you to check multiple conditions at once!
+		a = 5;
+		b = 10;
+		c = 15;
+		if (b > a && c > b) {
+			System.out.println("Both conditions are true!");
+		}
+		
+		if (b > a || c > b) {
+			System.out.println("At least one condition is true!");
+		}
+		
+		// Else
+		// An else statement triggers if the condition is not true.
+		int myAge = 16;
+		int adultAge = 18;
+		
+		if (myAge >= adultAge) {
+			System.out.println("I am an adult!");
+		}
+		else {
+			System.out.println("I am not an adult!");
+		}
+		
+		// Else if
+		// An else if statement tests a new condition if the first condition is not true.
+		// The else statement only triggers if no if or else if statement was triggered.
+		myAge = 16;
+		adultAge = 18;
+		int teenAge = 13;
+		
+		if (myAge >= adultAge) {
+			System.out.println("I am an adult!");
+		}
+		else if (myAge >= teenAge) {
+			System.out.println("I am a teen!");
+		}
+		else {
+			System.out.println("I am a child!");
+		}
+		
+		/* Loops
+		*/
+		// While loops
+		// While loops repeat a section of code while a boolean is true.
+		Scanner scanny = new Scanner(System.in);
+		
+		int answer = 0;
+		
+		while (answer != 4) { // Will only exit the loop when the user inputs the correct number (4)
+			System.out.println("What is 2+2?");
+			answer = scanny.nextInt();
+		}
+		
+		System.out.println("Good job!");
+		
+		scanny.close();
+		
+		// For loops
+		// Incremental for loops, such as the one below, repeat a set of code a certain amount of times before exiting.
+		for (int i = 1; i <= 10; i++) { // Prints numbers 1 through 10
+			System.out.println(i); 
+		}
+		
+		// Lets break this up a bit...
+		for (int i = 1; /* variable declaration - executed at the start of the loop */
+			   i <= 10; /* boolean - represents the condition */
+			       i++ /* iterable - repeats every iteration */
+			) { 
+			System.out.println(i); // code - repeats on every iteration
+		}
+		
+		// Note: i++ is shorthand for i = i + 1
+		// You can also do i-- which is shorthand for i = i - 1
+		
+		// For-each loops go through every element in an array or list and performs an action on each one
+		int[] myNumbers = {5, 24, 7, 3}; // Oh yeah btw this is an array, its basically just a bunch of variables put together into a single variable
+		for (int num : myNumber) {
+			System.out.println(num); // Prints every number in the array (5, 24, 7, 3)
+		}
+		
+		/* Functions
+		*/ 
+		// A function is a piece of code with an intended purpose. It has inputs (arguments) and outputs (returns).
+		// The main function is what runs once when you hit the Run button.
+		
+		// Here is an example of a simple function with multiple inputs and a single output:
+		public static int add(int x, int y) {
+			return x + y;
+		}
+        
+	}
+}
