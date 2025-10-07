@@ -26,6 +26,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    System.out.println("I LOVE choclate but i cant eat it because then i'll get fat");
+    System.out.println("67 Mustard Mangos");
   }
 
   /**
