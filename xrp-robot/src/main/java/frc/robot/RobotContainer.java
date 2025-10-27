@@ -4,12 +4,23 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.GenericHID; 
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Constants.ARM.ARM_ANGLE;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.AutoChal1;
+import frc.robot.commands.AutoChal2;
+import frc.robot.commands.AutoChal3;
 import frc.robot.commands.AutonomousDistance;
 import frc.robot.commands.AutonomousTime;
+import frc.robot.commands.DriveDistance;
+import frc.robot.commands.MoveArm;
+import frc.robot.commands.MoveArmNegative;
+import frc.robot.commands.MoveArmNegativeFast;
+import frc.robot.commands.MoveArmPositive;
+import frc.robot.commands.MoveArmPositiveFast;
+import frc.robot.commands.TurnDegrees;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -30,6 +41,8 @@ public class RobotContainer {
   private final Drivetrain m_drivetrain = new Drivetrain();
   private final XRPOnBoardIO m_onboardIO = new XRPOnBoardIO();
 
+  private final Arm m_Arm = new Arm();
+
   // Assumes a gamepad plugged into channel 0
   private final CommandXboxController m_controller = new CommandXboxController(0);
 
@@ -42,6 +55,7 @@ public class RobotContainer {
     configureButtonBindings();
   }
 
+  
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
@@ -62,7 +76,24 @@ public class RobotContainer {
     // Setup SmartDashboard options
     m_chooser.setDefaultOption("Auto Routine Distance", new AutonomousDistance(m_drivetrain));
     m_chooser.addOption("Auto Routine Time", new AutonomousTime(m_drivetrain));
+    m_chooser.addOption("AutoChal1", new AutoChal1(m_drivetrain));
+    m_chooser.addOption("AutoChal2", new AutoChal2(m_drivetrain));
+    m_chooser.addOption("AutoChal3", new AutoChal3(m_drivetrain));
     SmartDashboard.putData(m_chooser);
+      
+    m_controller.a().whileTrue(new MoveArm(m_Arm, ARM_ANGLE.HALF_EXTENDED.get()));
+    m_controller.b().whileTrue(new MoveArm(m_Arm, ARM_ANGLE.FULLY_EXTENDED.get()));
+    m_controller.rightTrigger().whileTrue(new DriveDistance(1, 50, m_drivetrain));
+    m_controller.leftTrigger().whileTrue(new DriveDistance(-1, 50, m_drivetrain));
+    m_controller.leftBumper().whileTrue(new TurnDegrees(1, 360, m_drivetrain));
+    m_controller.rightBumper().whileTrue(new TurnDegrees(-1, 360, m_drivetrain));
+    m_controller.x().whileTrue(new MoveArm(m_Arm, ARM_ANGLE.STOWED.get()));
+    m_controller.povDown().whileTrue(new MoveArmPositiveFast(m_Arm));
+    m_controller.povUp().whileTrue(new MoveArmNegativeFast(m_Arm));
+    m_controller.pov(315).whileTrue(new MoveArmPositive(m_Arm));
+    m_controller.pov(45).whileTrue(new MoveArmPositive(m_Arm));
+    m_controller.pov(135).whileTrue(new MoveArmNegative(m_Arm));
+    m_controller.pov(225).whileTrue(new MoveArmNegative(m_Arm));
   }
 
   /**
