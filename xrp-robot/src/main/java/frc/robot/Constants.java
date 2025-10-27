@@ -16,4 +16,21 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+
+  public static class Arm {
+    public static final double calibration = -20;
+    public enum ARM_ANGLE {
+      DOWN(0),
+      MIDDLE(20),
+      UP(40);
+
+      private final double angle;
+      ARM_ANGLE(final double angle) {
+        this.angle = angle;
+      }
+      public double get() {
+        return angle;
+      }
+    }
+  }
 }
