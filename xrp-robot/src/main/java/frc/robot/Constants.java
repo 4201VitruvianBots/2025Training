@@ -18,6 +18,8 @@ public final class Constants {
   }
   public static class ARM{
     public enum ARM_ANGLE{
+      STRO(0),
+      KING(40),
       STOWED(20.0),
       HALF_EXTENDED(110.0),
       FULLY_EXTENDED(220.0);

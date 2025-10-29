@@ -9,7 +9,6 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.xrp.XRPServo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.ARM.ARM_ANGLE;
 
 public class Arm extends SubsystemBase {
   /** Creates a new Arm. */

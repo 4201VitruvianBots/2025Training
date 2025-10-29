@@ -81,19 +81,24 @@ public class RobotContainer {
     m_chooser.addOption("AutoChal3", new AutoChal3(m_drivetrain));
     SmartDashboard.putData(m_chooser);
       
-    m_controller.a().whileTrue(new MoveArm(m_Arm, ARM_ANGLE.HALF_EXTENDED.get()));
-    m_controller.b().whileTrue(new MoveArm(m_Arm, ARM_ANGLE.FULLY_EXTENDED.get()));
-    m_controller.rightTrigger().whileTrue(new DriveDistance(1, 50, m_drivetrain));
-    m_controller.leftTrigger().whileTrue(new DriveDistance(-1, 50, m_drivetrain));
-    m_controller.leftBumper().whileTrue(new TurnDegrees(1, 360, m_drivetrain));
-    m_controller.rightBumper().whileTrue(new TurnDegrees(-1, 360, m_drivetrain));
-    m_controller.x().whileTrue(new MoveArm(m_Arm, ARM_ANGLE.STOWED.get()));
-    m_controller.povDown().whileTrue(new MoveArmPositiveFast(m_Arm));
-    m_controller.povUp().whileTrue(new MoveArmNegativeFast(m_Arm));
-    m_controller.pov(315).whileTrue(new MoveArmPositive(m_Arm));
-    m_controller.pov(45).whileTrue(new MoveArmPositive(m_Arm));
-    m_controller.pov(135).whileTrue(new MoveArmNegative(m_Arm));
-    m_controller.pov(225).whileTrue(new MoveArmNegative(m_Arm));
+    m_controller.a().onTrue(new MoveArm(m_Arm, ARM_ANGLE.HALF_EXTENDED.get()));
+    m_controller.a().whileFalse(new MoveArm(m_Arm, ARM_ANGLE.HALF_EXTENDED.get()));
+    m_controller.b().onTrue(new MoveArm(m_Arm, ARM_ANGLE.FULLY_EXTENDED.get()));
+    m_controller.b().whileFalse(new MoveArm(m_Arm, 180));
+    m_controller.rightTrigger().whileTrue(new DriveDistance(1, 5000, m_drivetrain));
+    m_controller.leftTrigger().whileTrue(new DriveDistance(-1, 5000, m_drivetrain));
+    m_controller.leftBumper().whileTrue(new TurnDegrees(1, 36000, m_drivetrain));
+    m_controller.rightBumper().whileTrue(new TurnDegrees(-1, 36000, m_drivetrain));
+    m_controller.x().onTrue(new MoveArm(m_Arm, ARM_ANGLE.STOWED.get()));
+    m_controller.x().whileFalse(new MoveArm(m_Arm, ARM_ANGLE.STOWED.get()));
+    m_controller.y().onTrue(new MoveArm(m_Arm, ARM_ANGLE.STRO.get()));
+    m_controller.y().onFalse(new MoveArm(m_Arm, ARM_ANGLE.KING.get()));
+    m_controller.povUp().whileTrue(new MoveArmPositiveFast(m_Arm));
+    m_controller.povDown().whileTrue(new MoveArmNegativeFast(m_Arm));
+    m_controller.pov(225).whileTrue(new MoveArmPositive(m_Arm));
+    m_controller.pov(135).whileTrue(new MoveArmPositive(m_Arm));
+    m_controller.pov(45).whileTrue(new MoveArmNegative(m_Arm));
+    m_controller.pov(315).whileTrue(new MoveArmNegative(m_Arm));
   }
 
   /**
